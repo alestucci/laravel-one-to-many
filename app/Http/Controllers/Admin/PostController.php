@@ -41,6 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            // 'user_is' => 'required|exists:App\User,id',
             'title' => 'required|max:100',
             'slug' => 'required|unique:posts|max:100',
             'content' => 'required'
@@ -74,9 +75,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::id() === $post->user_id) abort(403);
         return view('admin.posts.edit', compact('post'));
+        
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -86,6 +89,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        if (Auth::id() === $post->user_id) abort(403);
+
         $request->validate([
             'title' => 'required|max:100',
             'slug' => [
@@ -111,5 +116,12 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->back();
+    }
+
+    public function myindex()
+    {
+        $posts = Post::where('user_id', Auth::id())-> paginate(30);
+
+        return view('admin.posts.index', compact('posts'));
     }
 }
