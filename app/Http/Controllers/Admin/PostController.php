@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -45,7 +46,11 @@ class PostController extends Controller
             'content' => 'required'
         ]);
 
-        $newPost = Post::create($request->all());
+        $formData = $request->all() + [
+            'user_id' => Auth::id(),
+        ];
+
+        $newPost = Post::create($formData);
 
         return redirect()->route('admin.posts.show', $newPost->slug);
     }
