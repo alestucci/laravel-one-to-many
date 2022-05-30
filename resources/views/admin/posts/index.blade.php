@@ -24,10 +24,14 @@
                 <th scope="row"><a href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a></th>
                 <td>{{ $post->slug }}</td>
                 <td>
+                    @if (Auth::id() === $post->user_id)
                     <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
+                    @endif
                 </td>
                 <td>
+                    @if (Auth::id() === $post->user_id)
                     <button class="btn btn-danger delete-button" data-id="{{ $post->slug }}">Delete</button>
+                    @endif
                 </td>
             </tr>
             @endforeach

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
         Route::post('/slugger', 'HomeController@slugger')->name('slugger');
+        Route::get('/posts/my-posts', 'PostController@myindex')->name('posts.myindex');
         Route::resource('/posts', 'PostController');
     });
 

@@ -32,6 +32,9 @@
                 <a class="navbar-brand" href="{{ route('admin.posts.create') }}">
                     Crea un nuovo Post
                 </a>
+                <a class="navbar-brand" href="{{ route('admin.posts.myindex') }}">
+                    I miei Post
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
