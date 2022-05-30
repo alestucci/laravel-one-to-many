@@ -21,10 +21,21 @@
 </head>
 <body>
     <div id="app">
-        <x-navbar/>
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <x-navbar color="dark"/>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-2">
+                    <a href="{{ route('admin.posts.index') }}" class="d-block btn btn-warning my-2" >All Posts</a>
+                    <a href="{{ route('admin.posts.create') }}" class="d-block btn btn-warning my-2" >New Post</a>
+                    <a href="{{ route('admin.categories.index') }}" class="d-block btn btn-warning my-2" >All categories</a>
+                    <a href="{{ route('admin.categories.create') }}" class="d-block btn btn-warning my-2" >New Category</a>
+                </div>
+                <div class="col-10">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

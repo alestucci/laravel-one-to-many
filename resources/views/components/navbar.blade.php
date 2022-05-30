@@ -1,5 +1,5 @@
 <div>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md @if($color === 'light') navbar-light bg-white @endif @if($color === 'dark') navbar-dark bg-black @endif shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ route('admin.home') }}">
                 {{ config('app.name', 'Laravel') }}

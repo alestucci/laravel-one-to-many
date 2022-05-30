@@ -9,20 +9,47 @@
     <div class="alert alert-warning">{{ session('deleted') }}</div>
     @endif
 
+    <form action="" method="GET">
+        <div class="mb-3">
+            <label for="search-string" class="form-label">{{ __('Stringa di ricerca') }}</label>
+            <input type="text" class="form-control" id="search-string" name="s" value="{{ old('title') }}">
+        </div>
+
+        <select class="form-select mb-3" name="category" id="category">
+            <option value="" selected>Seleziona una categoria</option>
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+
+        <select class="form-select mb-3" name="author" id="author">
+            <option value="" selected>Seleziona un autore</option>
+            @foreach ($users as $user)
+            <option value="{{ $user->id }}">{{ $user->name }}</option>
+            @endforeach
+        </select>
+
+        <button class="btn btn-primary">Filtra</button>
+    </form>
+
     <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Autore</th>
+                <th scope="col">Categoria</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($posts as $post)
             <tr>
-                <th scope="row">{{ $post->id }}</th>
-                <th scope="row"><a href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a></th>
+                <td scope="row">{{ $post->id }}</td>
+                <td scope="row"><a href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a></td>
                 <td>{{ $post->slug }}</td>
+                <td>{{ $post->user_id }}</td>
+                <td>{{ $post->category_id }}</td>
                 <td>
                     @if (Auth::id() === $post->user_id)
                     <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>

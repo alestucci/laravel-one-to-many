@@ -18,6 +18,7 @@
                 @error ('title')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
                 {{-- SLUG --}}
                 <div class="mb-3">
                     <label for="slug" class="form-label">{{__('Slug')}}</label>
@@ -28,17 +29,22 @@
                 @error ('slug')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
                 {{-- CATEGORIA --}}
                 <select name="category_id" id="category_id" class="form-select mb-3">
                     <option selected>Seleziona una categoria</option>
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}"
+                        @if ($category->id == old('category_id')) selected @endif>
+                        {{ $category->name }}
+                    </option>
                     @endforeach
                 </select>
                 
                 @error ('category_id')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                
                 {{-- CONTENUTO --}}
                 <div class="mb-1">
                     <label for="content" class="form-label">{{__('Content')}}</label>
