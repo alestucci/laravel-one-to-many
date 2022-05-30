@@ -29,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = \App\Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -44,6 +45,7 @@ class PostController extends Controller
             // 'user_is' => 'required|exists:App\User,id',
             'title' => 'required|max:100',
             'slug' => 'required|unique:posts|max:100',
+            'category_id' => 'required|exists:App\Category,id',
             'content' => 'required'
         ]);
 

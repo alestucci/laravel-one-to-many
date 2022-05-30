@@ -6,8 +6,10 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/CategoryController.php',
     'App\\Http\\Controllers\\Admin\\HomeController' => $baseDir . '/app/Http/Controllers/Admin/HomeController.php',
     'App\\Http\\Controllers\\Admin\\PostController' => $baseDir . '/app/Http/Controllers/Admin/PostController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -130,6 +132,7 @@ return array(
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
     'Carbon\\TranslatorImmutable' => $vendorDir . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
     'Carbon\\TranslatorStrongTypeInterface' => $vendorDir . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
+    'CategorySeeder' => $baseDir . '/database/seeds/CategorySeeder.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Cron\\AbstractField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
